@@ -9,7 +9,6 @@
     />
     <meta name="theme-color" content="#101010" />
     <title>Way of Furqan | Your Journey with the Quran</title>
-    <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
@@ -44,37 +43,23 @@
     <main id="main">
       <section class="hero page-width" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow"><span></span> A thoughtful path to Quran learning</p>
-          <h1 id="hero-title">Your Journey<br />with the <em>Quran</em></h1>
+          <h1 id="hero-title">Way of<br /><em>Furqan.</em></h1>
           <p class="hero-intro">
-            Grow closer to the words of Allah through careful reading, Tajweed,
-            memorisation, translation, and Tafsir. Learn at a pace that makes room
-            for understanding and steady progress.
+            Thoughtful Quran learning in reading, Tajweed, Hifz, translation, and Tafsir,
+            guided by care and steady progress.
           </p>
           <div class="hero-actions">
-            <a class="button button-dark" href="#courses">Explore courses <span aria-hidden="true">&#8594;</span></a>
-            <a class="button button-light" href="#portals">Get started <span aria-hidden="true">&#8599;</span></a>
-          </div>
-          <div class="hero-note">
-            <span class="note-rule" aria-hidden="true"></span>
-            <p>Begin with one verse. Keep going with purpose.</p>
+            <button class="button button-dark subscribe-button" type="button" data-open-subscribe>
+              Subscribe <span aria-hidden="true">&#8599;</span>
+            </button>
           </div>
         </div>
 
-        <div class="hero-visual">
-          <img
-            class="hero-image"
-            src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
-            alt="An open Quran ready for study"
-            fetchpriority="high"
-          />
-          <div class="visual-shade" aria-hidden="true"></div>
-          <div class="arabic-verse" lang="ar" dir="rtl">
-            <p class="arabic-text">وَقُل رَّبِّ زِدْنِي عِلْمًا</p>
-            <p class="verse-translation" dir="ltr">“My Lord, increase me in knowledge.”</p>
-            <p class="verse-reference" dir="ltr">Quran 20:114</p>
-          </div>
-          <span class="visual-index" aria-hidden="true">01 / A LIFE OF LEARNING</span>
+        <div class="hero-visual" aria-hidden="true">
+          <span class="flow-line flow-line-one"></span>
+          <span class="flow-line flow-line-two"></span>
+          <span class="flow-line flow-line-three"></span>
+          <span class="flow-light"></span>
         </div>
       </section>
 
@@ -156,11 +141,33 @@
           </p>
         </div>
         <div class="subscribe-action">
-          <button class="button button-dark subscribe-button" type="button" disabled>
+          <button class="button button-dark subscribe-button" type="button" data-open-subscribe>
             Subscribe
           </button>
         </div>
       </section>
+
+      <dialog class="subscribe-dialog" id="subscribe-dialog" aria-labelledby="dialog-title">
+        <div class="dialog-content">
+          <button class="dialog-close" type="button" aria-label="Close subscription options" data-close-subscribe>&times;</button>
+          <p class="eyebrow">Subscription options</p>
+          <h2 id="dialog-title">Choose your plan</h2>
+          <p class="dialog-intro">Plan choices are a preview. Checkout and payments are not connected.</p>
+          <div class="plan-grid">
+            <article class="plan-card">
+              <p class="plan-cadence">MONTHLY</p>
+              <h3>Monthly Plan</h3>
+              <p>Standard billing, renewed monthly.</p>
+            </article>
+            <article class="plan-card plan-card-featured">
+              <span class="best-value">Best Value</span>
+              <p class="plan-cadence">YEARLY</p>
+              <h3>Yearly Plan</h3>
+              <p>One yearly billing period.</p>
+            </article>
+          </div>
+        </div>
+      </dialog>
 
       <section class="contact-section" id="contact" aria-labelledby="contact-title">
         <div class="contact-inner page-width">
