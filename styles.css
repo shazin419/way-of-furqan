@@ -92,23 +92,41 @@ h2 { margin-bottom: 0; font-size: 48px; line-height: 1.08; }
 .subscribe-button { min-width: 164px; min-height: 51px; transition: background 160ms ease, transform 160ms ease; }
 .subscribe-button:hover { background: #d9d9d9; transform: translateY(-2px); }
 
-.subscribe-dialog { width: min(650px, calc(100% - 32px)); max-width: none; max-height: min(90dvh, 760px); overflow: auto; padding: 0; border: 1px solid #4b4b4b; color: var(--ink); background: linear-gradient(145deg, #171717, #080808 72%); box-shadow: 0 30px 100px rgb(0 0 0 / 75%); }
-.subscribe-dialog[open] { animation: dialog-enter 220ms cubic-bezier(0.2, 0.75, 0.25, 1) both; }
-.subscribe-dialog::backdrop { background: rgb(0 0 0 / 78%); backdrop-filter: blur(7px); }
+.subscribe-dialog { width: min(540px, calc(100% - 32px)); max-width: none; max-height: min(90dvh, 760px); overflow: auto; padding: 0; border: 1px solid #575757; color: var(--ink); background: linear-gradient(145deg, #171717, #080808 72%); box-shadow: 0 30px 100px rgb(0 0 0 / 75%), 0 0 55px rgb(255 255 255 / 8%); }
+.subscribe-dialog[open] { animation: dialog-enter 620ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.subscribe-dialog.is-closing { animation: dialog-exit 260ms cubic-bezier(0.4, 0, 1, 1) both; }
+.subscribe-dialog::backdrop { background: rgb(0 0 0 / 78%); backdrop-filter: blur(7px); animation: backdrop-enter 500ms ease both; }
+.subscribe-dialog.is-closing::backdrop { animation: backdrop-exit 240ms ease both; }
 .dialog-content { position: relative; padding: 42px; }
 .dialog-close { position: absolute; top: 15px; right: 15px; display: grid; width: 40px; aspect-ratio: 1; place-items: center; border: 1px solid #555; color: var(--ink); background: transparent; cursor: pointer; font-size: 22px; line-height: 1; transition: background 160ms ease, border-color 160ms ease; }
 .dialog-close:hover { border-color: #aaa; background: rgb(255 255 255 / 8%); }
 .dialog-content > .eyebrow { margin-bottom: 10px; }
 .dialog-content h2 { margin: 0 48px 12px 0; font-size: 38px; }
 .dialog-intro { max-width: 430px; margin-bottom: 26px; color: #b8b8b8; font-size: 13px; }
-.plan-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.plan-card { position: relative; min-height: 172px; padding: 22px; border: 1px solid #424242; background: linear-gradient(145deg, #1d1d1d, #111); }
-.plan-card-featured { border-color: #a0a0a0; box-shadow: inset 0 0 28px rgb(255 255 255 / 4%); }
+.plan-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
+.plan-card { position: relative; display: flex; min-height: 100%; flex-direction: column; align-items: flex-start; padding: 25px; border: 1px solid #626262; background: linear-gradient(145deg, #1d1d1d, #111); }
+.plan-card-featured { border-color: #aaa; box-shadow: inset 0 0 28px rgb(255 255 255 / 5%), 0 15px 40px rgb(0 0 0 / 35%); }
+.plan-card-featured::after { position: absolute; z-index: -1; inset: -12px; border-radius: inherit; background: radial-gradient(ellipse, rgb(255 255 255 / 11%), transparent 68%); content: ""; opacity: 0.45; animation: plan-glow 4.5s ease-in-out infinite alternate; }
 .plan-cadence { margin-bottom: 24px; color: #aaa; font-size: 9px; font-weight: 700; letter-spacing: 1.6px; }
 .plan-card h3 { margin-bottom: 7px; font-size: 22px; }
-.plan-card > p:last-child { margin-bottom: 0; color: #b8b8b8; font-size: 12px; }
+.plan-price { margin-bottom: 19px; color: #f0f0f0; font-family: var(--serif); font-size: 38px; line-height: 1.1; }
+.plan-price .price-currency { margin-right: 2px; font-family: var(--sans); font-size: 23px; }
+.plan-price span { color: #aaa; font-family: var(--sans); font-size: 11px; }
+.plan-features { display: grid; width: 100%; gap: 10px; margin: 0 0 25px; padding-left: 18px; color: #d0d0d0; font-size: 12px; }
+.plan-features li::marker { color: #888; }
+.plan-select { width: 100%; min-height: 48px; margin-top: auto; border: 1px solid #f4f4f4; color: #080808; background: #f4f4f4; cursor: pointer; font: inherit; font-size: 12px; font-weight: 700; transition: background 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease; }
+.plan-select:hover { transform: translateY(-2px); color: #080808; background: #d9d9d9; box-shadow: 0 8px 24px rgb(255 255 255 / 12%); }
+.plan-status { min-height: 20px; margin: 16px 0 0; color: #c8c8c8; font-size: 11px; }
 .best-value { position: absolute; top: 15px; right: 15px; padding: 4px 7px; border: 1px solid #777; color: #eee; font-size: 8px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; }
-@keyframes dialog-enter { from { opacity: 0; transform: translateY(10px) scale(0.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (hover: hover) and (pointer: fine) {
+  .plan-card-featured { transform-style: preserve-3d; transition: transform 280ms ease, box-shadow 280ms ease; }
+  .plan-card-featured:hover { transform: perspective(900px) rotateX(1deg) rotateY(-1deg) translateY(-4px); box-shadow: inset 0 0 32px rgb(255 255 255 / 7%), 0 22px 54px rgb(0 0 0 / 45%); }
+}
+@keyframes dialog-enter { from { opacity: 0; transform: translateY(26px) scale(0.88); } 70% { opacity: 1; transform: translateY(-2px) scale(1.015); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes dialog-exit { from { opacity: 1; transform: translateY(0) scale(1); } to { opacity: 0; transform: translateY(14px) scale(0.94); } }
+@keyframes backdrop-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes backdrop-exit { from { opacity: 1; } to { opacity: 0; } }
+@keyframes plan-glow { from { opacity: 0.25; } to { opacity: 0.7; } }
 
 .contact-section { border-block: 1px solid var(--line); background: linear-gradient(110deg, #151515, #101010 60%, #171717); }
 .contact-inner { display: grid; min-height: 310px; grid-template-columns: 1fr 0.62fr; align-items: center; gap: 60px; padding-block: 66px; }
@@ -193,7 +211,7 @@ h2 { margin-bottom: 0; font-size: 48px; line-height: 1.08; }
   .dialog-content { padding: 34px 20px 22px; }
   .dialog-content h2 { font-size: 32px; }
   .plan-grid { grid-template-columns: 1fr; }
-  .plan-card { min-height: 145px; padding: 18px; }
+  .plan-card { min-height: 0; padding: 20px; }
   .plan-cadence { margin-bottom: 18px; }
   .plan-card h3 { font-size: 20px; }
   .contact-inner { min-height: 0; grid-template-columns: 1fr; gap: 22px; padding-block: 55px; }

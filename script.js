@@ -3,6 +3,7 @@ const navigation = document.querySelector(".primary-navigation");
 const currentYear = document.querySelector("#current-year");
 const subscribeDialog = document.querySelector("#subscribe-dialog");
 const closeSubscribe = subscribeDialog.querySelector("[data-close-subscribe]");
+const planStatus = subscribeDialog.querySelector("#plan-status");
 
 menuToggle.addEventListener("click", () => {
   const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
@@ -18,14 +19,42 @@ navigation.addEventListener("click", (event) => {
 });
 
 document.querySelectorAll("[data-open-subscribe]").forEach((button) => {
-  button.addEventListener("click", () => subscribeDialog.showModal());
+  button.addEventListener("click", () => {
+    subscribeDialog.classList.remove("is-closing");
+    planStatus.textContent = "";
+    subscribeDialog.showModal();
+  });
 });
 
-closeSubscribe.addEventListener("click", () => subscribeDialog.close());
+const closeSubscriptionDialog = () => {
+  if (subscribeDialog.open && !subscribeDialog.classList.contains("is-closing")) {
+    subscribeDialog.classList.add("is-closing");
+  }
+};
+
+subscribeDialog.addEventListener("animationend", (event) => {
+  if (event.target === subscribeDialog && event.animationName === "dialog-exit") {
+    subscribeDialog.classList.remove("is-closing");
+    subscribeDialog.close();
+  }
+});
+
+subscribeDialog.addEventListener("cancel", (event) => {
+  event.preventDefault();
+  closeSubscriptionDialog();
+});
+
+closeSubscribe.addEventListener("click", closeSubscriptionDialog);
+
+subscribeDialog.querySelectorAll("[data-plan-choice]").forEach((button) => {
+  button.addEventListener("click", () => {
+    planStatus.textContent = `${button.dataset.planChoice} is a preview only. Plan selection and checkout are not available yet.`;
+  });
+});
 
 subscribeDialog.addEventListener("click", (event) => {
   if (event.target === subscribeDialog) {
-    subscribeDialog.close();
+    closeSubscriptionDialog();
   }
 });
 
