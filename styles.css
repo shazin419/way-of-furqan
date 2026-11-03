@@ -115,7 +115,8 @@ h2 { margin-bottom: 0; font-size: 48px; line-height: 1.08; }
 .plan-card h3 { margin-bottom: 7px; font-size: 22px; }
 .plan-price { margin-bottom: 19px; color: #f0f0f0; font-family: var(--serif); font-size: 38px; line-height: 1.1; }
 .plan-price .price-currency { margin-right: 2px; font-family: var(--sans); font-size: 23px; }
-.plan-price span { color: #aaa; font-family: var(--sans); font-size: 11px; }
+.plan-price .price-period { color: #aaa; font-family: var(--sans); font-size: 11px; }
+.plan-billing { margin: -8px 0 20px; color: #b8b8b8; font-size: 11px; }
 .plan-features { display: grid; width: 100%; gap: 10px; margin: 0 0 25px; padding-left: 18px; color: #d0d0d0; font-size: 12px; }
 .plan-features li::marker { color: #888; }
 .plan-select { width: 100%; min-height: 48px; margin-top: auto; border: 1px solid #f4f4f4; color: #080808; background: #f4f4f4; cursor: pointer; font: inherit; font-size: 12px; font-weight: 700; transition: background 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease; }
