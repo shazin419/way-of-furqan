@@ -48,7 +48,7 @@ closeSubscribe.addEventListener("click", closeSubscriptionDialog);
 
 subscribeDialog.querySelectorAll("[data-plan-choice]").forEach((button) => {
   button.addEventListener("click", () => {
-    planStatus.textContent = `${button.dataset.planChoice} selected for preview. Monthly checkout is not connected yet.`;
+    planStatus.textContent = `${button.dataset.planChoice} selected for preview. This preview does not process payments or activate plan benefits.`;
   });
 });
 
